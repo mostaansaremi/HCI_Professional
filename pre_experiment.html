@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pre-Survey</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Base styling similar to the consent page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      max-width: 800px;
+      width: 90%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    header, footer {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+      color: #333;
+    }
+    footer p {
+      font-size: 0.9em;
+      color: #777;
+    }
+    /* Button styling matching the consent form */
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    /* Display each label as a block so answers appear under each other */
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1em;
+      color: #333;
+    }
+    p {
+      font-size: 1em;
+      color: #333;
+    }
+    select, input[type="text"], textarea {
+      padding: 8px;
+      width: 100%;
+      margin: 5px 0 15px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    fieldset {
+      border: none;
+      margin-bottom: 20px;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Pre-Survey</h1>
+    </header>
+    <main>
+      <section>
+        <form id="preSurveyForm">
+          <p><strong>1. What gender do you identify as?</strong></p>
+          <label><input type="radio" name="gender" value="Male" required /> Male</label>
+          <label><input type="radio" name="gender" value="Female" required /> Female</label>
+          <label><input type="radio" name="gender" value="Non-binary" required /> Non-binary</label>
+          <label><input type="radio" name="gender" value="Prefer not to say" required /> Prefer not to say</label>
+
+          <p><strong>2. What age group do you fall under?</strong></p>
+          <select id="ageGroup" name="age_group" required>
+            <option value="">--Select--</option>
+            <option value="18-25">18 to 25 years</option>
+            <option value="26-35">26 to 35 years</option>
+            <option value="36-45">36 to 45 years</option>
+            <option value="46-55">46 to 55 years</option>
+            <option value="56-65">56 to 65 years</option>
+            <option value="66+">66 years and older</option>
+          </select>
+
+          <p><strong>3. What is your ethnicity?</strong></p>
+          <select id="ethnicity" name="ethnicity" required>
+            <option value="">--Select--</option>
+            <option value="American Indian or Alaska Native">American Indian or Alaska Native</option>
+            <option value="Asian">Asian</option>
+            <option value="Black or African American">Black or African American</option>
+            <option value="Hispanic, Latino, or Spanish Origin">Hispanic, Latino, or Spanish Origin</option>
+            <option value="Middle Eastern or North African">Middle Eastern or North African</option>
+            <option value="Native Hawaiian or Other Pacific Islander">Native Hawaiian or Other Pacific Islander</option>
+            <option value="White">White</option>
+            <option value="Other">Other</option>
+          </select>
+          <input type="text" id="ethnicityOther" name="ethnicity_other" placeholder="Please specify" style="display:none;" />
+
+          <p><strong>4. What is your role/position?</strong></p>
+          <select id="role" name="role" required>
+            <option value="">--Select--</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Data Engineer">Data Engineer</option>
+            <option value="Data Architect">Data Architect</option>
+            <option value="Data Analysts">Data Analysts</option>
+            <option value="Other">Other</option>
+          </select>
+          <input type="text" id="roleOther" name="role_other" placeholder="Please specify" style="display:none;" />
+
+          <p><strong>5. Years of Professional Experience:</strong></p>
+          <select id="experience" name="experience" required>
+            <option value="">--Select--</option>
+            <option value="0-2 years">0-2 years</option>
+            <option value="3-5 years">3-5 years</option>
+            <option value="6-10 years">6-10 years</option>
+            <option value="More than 10 years">More than 10 years</option>
+          </select>
+
+          <p><strong>6. Primary Programming Languages Used:</strong></p>
+          <label><input type="radio" name="programming_languages" value="Python" required /> Python</label>
+          <label><input type="radio" name="programming_languages" value="R" required /> R</label>
+          <label><input type="radio" name="programming_languages" value="SAAS" required /> SAAS</label>
+          <label><input type="radio" name="programming_languages" value="Java" required /> Java</label>
+          <label><input type="radio" id="progLangOther" name="programming_languages" value="Other" required /> Other</label>
+          <input type="text" id="progLangOtherText" name="programming_languages_other" placeholder="Please specify" style="display:none;" />
+
+          <p><strong>7. Expertise with Data (Coding/Analytics):</strong></p>
+          <select id="expertise" name="expertise" required>
+            <option value="">--Select--</option>
+            <option value="Novice">Novice</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Mid-level">Mid-level</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Expert">Expert</option>
+          </select>
+
+          <p><strong>8. Are you currently using AI-assisted coding tools in your development process?</strong></p>
+          <label><input type="radio" name="ai_usage" value="Yes" required /> Yes</label>
+          <label><input type="radio" name="ai_usage" value="No" required /> No</label>
+
+          <p><strong>9. If yes, which AI coding tools are you using? (Select all that apply)</strong></p>
+          <label><input type="checkbox" name="ai_tools" value="GitHub Copilot" /> GitHub Copilot</label>
+          <label><input type="checkbox" name="ai_tools" value="Visual Studio Copilot" /> Visual Studio Copilot</label>
+          <label><input type="checkbox" name="ai_tools" value="Azure Data bricks AI tools (DBRX)" /> Azure DBRX</label>
+          <label><input type="checkbox" name="ai_tools" value="ChatGPT" /> ChatGPT</label>
+          <label><input type="checkbox" name="ai_tools" value="CodeWhisperer" /> CodeWhisperer</label>
+          <label><input type="checkbox" id="aiToolsOther" name="ai_tools" value="Other" /> Other</label>
+          <input type="text" id="aiToolsOtherText" name="ai_tools_other" placeholder="Please specify" style="display:none;" />
+
+          <p><strong>10. How frequently do you use AI coding tools?</strong></p>
+          <select id="aiFrequency" name="ai_frequency" required>
+            <option value="">--Select--</option>
+            <option value="Daily">Daily</option>
+            <option value="Several times a week">Several times a week</option>
+            <option value="Occasionally">Occasionally</option>
+            <option value="Rarely">Rarely</option>
+            <option value="Never">Never</option>
+          </select>
+
+          <p><strong>11. How often have you used AI-based decision support systems in your projects?</strong></p>
+          <select id="decisionSupport" name="decision_support" required>
+            <option value="">--Select--</option>
+            <option value="Never">Never</option>
+            <option value="Very rarely">Very rarely</option>
+            <option value="Somewhat rarely">Somewhat rarely</option>
+            <option value="Often">Often</option>
+            <option value="Almost every day">Almost every day</option>
+          </select>
+
+          <p><strong>12. What benefits have you experienced from using AI coding tools?</strong></p>
+          <label><input type="checkbox" name="benefits" value="Increased coding speed" /> Increased coding speed</label>
+          <label><input type="checkbox" name="benefits" value="Improved code quality" /> Improved code quality</label>
+          <label><input type="checkbox" name="benefits" value="Assistance with learning new languages or frameworks" /> Learning new frameworks</label>
+          <label><input type="checkbox" name="benefits" value="Reduction in repetitive coding tasks" /> Fewer repetitive tasks</label>
+          <label><input type="checkbox" id="benefitsOther" name="benefits" value="Other" /> Other</label>
+          <input type="text" id="benefitsOtherText" name="benefits_other" placeholder="Please specify" style="display:none;" />
+
+          <p><strong>13. What concerns do you have regarding the use of AI coding tools?</strong></p>
+          <label><input type="checkbox" name="concerns" value="Potential introduction of bugs or errors" /> Bugs/errors</label>
+          <label><input type="checkbox" name="concerns" value="Over-reliance on AI leading to skill degradation" /> Skill degradation</label>
+          <label><input type="checkbox" name="concerns" value="Security and privacy issues" /> Privacy/Security</label>
+          <label><input type="checkbox" name="concerns" value="Lack of understanding of AI-generated code" /> Understanding issues</label>
+          <label><input type="checkbox" id="concernsOther" name="concerns" value="Other" /> Other</label>
+          <input type="text" id="concernsOtherText" name="concerns_other" placeholder="Please specify" style="display:none;" />
+
+          <p><strong>14. On a scale of 1 to 5, how much do you trust the accuracy of AI-generated code suggestions?</strong></p>
+          <label><input type="radio" name="trust" value="1" required /> 1</label>
+          <label><input type="radio" name="trust" value="2" required /> 2</label>
+          <label><input type="radio" name="trust" value="3" required /> 3</label>
+          <label><input type="radio" name="trust" value="4" required /> 4</label>
+          <label><input type="radio" name="trust" value="5" required /> 5</label>
+
+          <p><strong>15. How often do you verify the code provided by AI tools before integrating it into your projects?</strong></p>
+          <select id="verification" name="verification" required>
+            <option value="">--Select--</option>
+            <option value="Always">Always</option>
+            <option value="Most of the time">Most of the time</option>
+            <option value="Sometimes">Sometimes</option>
+            <option value="Rarely">Rarely</option>
+            <option value="Never">Never</option>
+          </select>
+
+          <p><strong>16. Have you encountered any issues or errors due to AI-generated code?</strong></p>
+          <label><input type="radio" name="issues" value="Yes" required /> Yes</label>
+          <label><input type="radio" name="issues" value="No" required /> No</label>
+          <div id="issuesDescription" style="display:none;">
+            <p><strong>If yes, please describe the issue:</strong></p>
+            <textarea id="issuesText" name="issues_text" rows="4" cols="50" placeholder="Describe the issue here"></textarea>
+          </div>
+
+          <p><strong>17. I am familiar with AI-based decision support systems.</strong></p>
+          <label><input type="radio" name="agreement" value="Strongly Agree" required /> Strongly Agree</label>
+          <label><input type="radio" name="agreement" value="Agree" required /> Agree</label>
+          <label><input type="radio" name="agreement" value="Neutral" required /> Neutral</label>
+          <label><input type="radio" name="agreement" value="Disagree" required /> Disagree</label>
+
+          <div style="text-align:center;">
+            <button type="submit">Next</button>
+          </div>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>© 2025 Experiment</p>
+    </footer>
+  </div>
+
+  <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.2/full/pyodide.js"></script>
+  <script src="experiment.js"></script>
+</body>
+</html>

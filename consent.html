@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IRB Approval</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>IRB Approval</h1>
+    <div class="consent-box">
+      <p>Dear Prospective Participant,</p>
+	   <p>
+        This letter is a request for you to participate in a research project designed to understand user trust in artificial intelligence. The project focuses on clinicians, industry workers, and students. This project is being conducted by Dr. Avishek Choudhury in Industrial and Management Systems Engineering at WVU and Dr. Mostaan Saremi in Data & Analytics of Archer Daniel Midland, and Tandon School of Engineering at NYU.
+      </p>
+      
+      <p>
+        If you decide to participate, you will be asked to take a survey designed based on your occupation. For clinicians, the survey will have patient profiles with AI generated differential diagnosis. You will be asked to evaluate the diagnosis and rate your trust level. For industry workers (data science field) and students, the survey will provide you with generic data science and statistics problems with AI generated solutions. You will be asked to evaluate the diagnosis and rate your trust level. Your participation in this project will take approximately 10 to 15 minutes. You must answer all the questions and make an assessment purely based on your knowledge. Please do not use the internet or other resources to evaluate the AI responses. You must be 18 years of age or older to participate. Please note that your answers will save after you finish the experiment.
+      </p>
+      
+      <p>
+        Your participation in this project will be kept as confidential as legally possible. All data will be reported in the aggregate. You will not be asked any questions that could lead back to your identity as a participant. Your participation is entirely voluntary. You may skip any question that you do not wish to answer, and you may stop participating at any time. The West Virginia University Institutional Review Board's approval of this project is on file with the WVU Office of Human Research Protections.
+      </p>
+      
+      <p>
+        If you have any questions about this research project, please feel free to contact us at 304-293-943 or by email at 
+        <a href="mailto:avishek.choudhury@mail.wvu.edu"><strong>avishek.choudhury@mail.wvu.edu</strong></a>, <a href="mailto:m.saremi@nyu.edu"><strong>m.saremi@nyu.edu</strong></a> or 
+        <a href="mailto:mostaan.saremi@adm.com"><strong>mostaan.saremi@adm.com</strong></a>. Additionally, you can contact the WVU Office of Human Research Protections at 304-293-7073.
+      </p>
+      
+      <p>
+        We hope that you will participate in this research project, as it could help us better understand how users trust AI. Thank you for your time and consideration.
+      </p>
+      
+      <p>
+        If you agree to participate, please check the Agree box and click “Continue to Pre-Survey” on your screen to proceed with the experiment.
+      </p>
+      
+      <p>Sincerely,</p>
+      
+      <p>Research Team</p>
+    </div>
+    <form id="consent-form">
+      <div class="checkbox-group">
+        <input type="checkbox" id="accept" name="accept" required>
+        <label for="accept">I accept</label>
+      </div>
+      <button type="submit" class="button">Continue to Pre-Survey</button>
+    </form>
+  </div>
+  <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.2/full/pyodide.js"></script>
+  <script src="experiment.js"></script>
+</body>
+</html>

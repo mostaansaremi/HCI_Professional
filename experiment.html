@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HCI Experiment</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.2/full/pyodide.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      max-width: 900px;
+      width: 100%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .balloon {
+      background-color: #e6f2ff;
+      border-left: 4px solid #007BFF;
+      padding: 15px;
+      margin: 20px 0;
+      white-space: pre-wrap;
+    }
+
+    .ide-container {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+
+    .editor, .ai-suggestion-box {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .editor {
+      height: 200px;
+    }
+
+    .ai-suggestion-box {
+      background-color: #f9f9f9;
+      padding: 10px;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+
+    .output {
+      background-color: #f0f0f0;
+      padding: 10px;
+      font-family: monospace;
+      margin-top: 10px;
+      border-radius: 4px;
+    }
+
+    .trust-buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .trust-buttons button {
+      margin: 0 10px;
+    }
+
+    .popup {
+      display: none;
+      background-color: #fff;
+      border: 2px solid #007BFF;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .popup textarea {
+      width: 100%;
+      height: 80px;
+    }
+
+    .survey {
+      display: none;
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+    }
+
+    .survey-question {
+      margin-bottom: 25px;
+    }
+
+    .survey-question p {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .survey-question label {
+     display: flex;
+     align-items: center;
+     gap: 4px;
+    }
+	.survey-question input[type="radio"] {
+	  margin-right: 1px; /* or 2px for tighter spacing */
+      vertical-align: left;
+	}
+	
+
+
+    button {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>HCI Experiment</h1>
+    <div id="task-container"></div>
+
+    <div class="trust-buttons" id="trust-section">
+      <button onclick="handleTrust()">Trust</button>
+      <button onclick="showNotTrustPopup()">Not Trust</button>
+    </div>
+
+    <div class="popup" id="not-trust-popup">
+      <p>Please explain why you didn’t trust the AI suggestion:</p>
+      <textarea id="notTrustReason" placeholder="Write your explanation..."></textarea>
+      <div style="text-align: right; margin-top: 10px;">
+        <button onclick="submitNotTrustReason()">Submit</button>
+      </div>
+    </div>
+
+    <div class="survey" id="survey-questions">
+      <div class="survey-question">
+        <p>1. How would you rate the accuracy of the AI suggestion?</p>
+        <label><input type="radio" name="accuracy" value="Not accurate at all" required> Not accurate at all</label>
+        <label><input type="radio" name="accuracy" value="Somewhat accurate"> Somewhat accurate</label>
+        <label><input type="radio" name="accuracy" value="Completely accurate"> Completely accurate</label>
+      </div>
+
+      <div class="survey-question">
+        <p>2. Do you believe that the AI suggestion could pose a risk to your project?</p>
+        <label><input type="radio" name="risk" value="Not at all" required> Not at all</label>
+        <label><input type="radio" name="risk" value="Somewhat"> Somewhat</label>
+        <label><input type="radio" name="risk" value="Yes, absolutely"> Yes, absolutely</label>
+      </div>
+
+      <div class="survey-question">
+        <p>3. How comfortable do you feel relying on this AI suggestion?</p>
+        <label><input type="radio" name="comfort" value="Not comfortable at all" required> Not comfortable at all</label>
+        <label><input type="radio" name="comfort" value="Partially comfortable"> Partially comfortable</label>
+        <label><input type="radio" name="comfort" value="Completely comfortable"> Completely comfortable</label>
+      </div>
+
+      <div class="survey-question">
+        <p>4. To what extent do you trust this AI suggestion?</p>
+        <label><input type="radio" name="trust" value="Do not trust at all" required> Do not trust at all</label>
+        <label><input type="radio" name="trust" value="Partially trust"> Partially trust</label>
+        <label><input type="radio" name="trust" value="Completely trust"> Completely trust</label>
+      </div>
+
+      <div style="text-align: center;">
+        <button onclick="submitSurvey()">Submit Answers</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.2/full/pyodide.js"></script>
+  <script src="experiment.js"></script>
+</body>
+</html>
